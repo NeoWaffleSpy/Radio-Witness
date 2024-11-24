@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://brx4yfj0leith"]
+
+[ext_resource type="PackedScene" uid="uid://cxm6tlxdtjj5f" path="res://Models/Board/scene.gltf" id="1_ci65f"]
+[ext_resource type="Script" path="res://Scripts/locations-picker.gd" id="2_cc5x4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5wv54"]
+size = Vector3(1, 0.733673, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ueuya"]
+size = Vector3(10, 10, 1)
+
+[node name="Main Scene"]
+
+[node name="Roof" type="StaticBody3D" parent="Sketchfab_model/C10_obj_cleaner_materialmerger_gles" index="24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.4053, -38.4567, 2.32769)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/C10_obj_cleaner_materialmerger_gles/Roof" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59828, 0)
+shape = SubResource("BoxShape3D_5wv54")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sketchfab_model/C10_obj_cleaner_materialmerger_gles/Roof/CollisionShape3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.63601, -0.0594821)
+visible = false
+mesh = SubResource("BoxMesh_ueuya")
+skeleton = NodePath("../..")
+
+[node name="Board" parent="Sketchfab_model" index="1" instance=ExtResource("1_ci65f")]
+transform = Transform3D(9.55343e-16, 2.18557e-08, 0.5, 0.5, -2.18557e-08, 6.61744e-23, 2.18557e-08, 0.5, -2.18557e-08, -45.2338, -36.899, 0.704679)
+
+[node name="Locations" type="Node" parent="." index="1"]
+script = ExtResource("2_cc5x4")
+
+[node name="Table" type="Node3D" parent="Locations" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.2719, 0.927951, 36.5476)
+
+[node name="Radio" type="Node3D" parent="Locations/Table" index="0"]
+transform = Transform3D(-4.35516e-08, 0.0854169, -0.996345, 3.73369e-09, 0.996345, 0.0854169, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Locations/Table/Radio" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+fov = 50.0
+near = 0.001
+
+[node name="Window" type="Node3D" parent="Locations/Table" index="1"]
+transform = Transform3D(0.921554, 0.164154, -0.351842, -0.175367, 0.984503, 0, 0.346389, 0.0617013, 0.93606, 0.165794, 0.163918, -0.257992)
+
+[node name="Back Wall" type="Node3D" parent="Locations/Table" index="2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.220699, 0.109983, 0.351101)
+
+[node name="Window Bay" type="Node3D" parent="Locations" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.2891, 0.927951, 36.221)
+
+[node name="Forward" type="Node3D" parent="Locations/Window Bay" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.997027, 0.0770497, 0, -0.0770497, 0.997027, 0, 0, 0)
