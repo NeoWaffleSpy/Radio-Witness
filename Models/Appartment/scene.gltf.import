@@ -3,12 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cdonmjd8di7dm"
-valid=false
+uid="uid://dj0prbgekpgmn"
+path="res://.godot/imported/scene.gltf-4b42584745e8a110af65aefad46e574b.scn"
 
 [deps]
 
 source_file="res://Models/Appartment/scene.gltf"
+dest_files=["res://.godot/imported/scene.gltf-4b42584745e8a110af65aefad46e574b.scn"]
 
 [params]
 
