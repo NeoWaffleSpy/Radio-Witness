@@ -13,6 +13,8 @@ func init(cam: Camera3D) -> void:
 	for child in get_children():
 		if child is Node3D:
 			SubLocationList.append(child)
+			if not DefaultLocation:
+				DefaultLocation = child
 	
 func MoveToDefault() -> void: MoveTo(DefaultLocation)
 
@@ -35,7 +37,7 @@ func MoveTo(node: Node3D) -> void:
 		"transform:basis",
 		Basis(),
 		0.5
-	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT_IN)
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
 	#CameraPOV.global_transform.origin = Vector3(0, 0, 0)
 	#CameraPOV.global_transform.basis = Basis()

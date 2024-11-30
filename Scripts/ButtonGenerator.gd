@@ -15,10 +15,15 @@ func clear(panel: VBoxContainer) -> void:
 		remove_child(child)
 		child.queue_free()
 
+func SwapPOV(node: Node3D):
+	clearSubLocation()
+	addChild(node.SubLocationList)
+	node.MoveToDefault()
+
 func clear_all_hooks(button: Button) -> void:
 	var signal_list = button.get_signal_connection_list("pressed")
 	for connection in signal_list:
-		button.disconnect("pressed", Callable(connection.target, connection.method))
+		button.disconnect(connection.signal.get_name(), connection.callable)
 
 func addMainChild(nodeList: Array[Node3D]) -> void:
 	if not nodeList:
@@ -29,7 +34,7 @@ func addMainChild(nodeList: Array[Node3D]) -> void:
 		var button = Button.new()
 		buttonList.append(button)
 		button.text = node.name
-		button.pressed.connect(Callable(node, "MoveToDefault"))
+		button.pressed.connect(SwapPOV.bind(node))
 		LocationPanel.add_child(button)
 
 func addChild(nodeList: Array[Node3D]) -> void:

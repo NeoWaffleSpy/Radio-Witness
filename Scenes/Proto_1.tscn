@@ -52,7 +52,7 @@ spot_range = 2.5
 [node name="Locations" type="Node3D" parent="." node_paths=PackedStringArray("CameraPOV", "ButtonGenerator")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.3083, 1.14619, 39.6063)
 script = ExtResource("2_cc5x4")
-CameraPOV = NodePath("Table/Board/Camera3D")
+CameraPOV = NodePath("Table/Radio/Camera3D")
 ButtonGenerator = NodePath("../UI")
 
 [node name="Table" type="Node3D" parent="Locations"]
@@ -62,16 +62,38 @@ script = ExtResource("5_g22yx")
 [node name="Radio" type="Node3D" parent="Locations/Table"]
 transform = Transform3D(-4.2804e-08, 0.202702, -0.97924, 8.86038e-09, 0.97924, 0.202702, 1, 0, -4.37114e-08, 0, 0, 0)
 
+[node name="Camera3D" type="Camera3D" parent="Locations/Table/Radio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+fov = 50.0
+
 [node name="Window" type="Node3D" parent="Locations/Table"]
 transform = Transform3D(0.915181, -0.0124391, -0.402852, 0.0424569, 0.996938, 0.0656685, 0.400802, -0.0772024, 0.912906, 0.185169, 0.171101, 0)
 
 [node name="Board" type="Node3D" parent="Locations/Table"]
 transform = Transform3D(0.0500002, 0, 0.998749, 0, 1, 0, -0.998749, 0, 0.0500002, -0.304729, 0.145826, 0.280342)
 
-[node name="Camera3D" type="Camera3D" parent="Locations/Table/Board"]
-fov = 50.0
-
 [node name="WindowBay" type="Node3D" parent="Locations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20567, 0, -3.31245)
 script = ExtResource("5_g22yx")
 
 [node name="Forward" type="Node3D" parent="Locations/WindowBay"]
+transform = Transform3D(1, 0, 0, 0, 0.97653, 0.215383, 0, -0.215383, 0.97653, 0, 0, 0)
+
+[node name="Right" type="Node3D" parent="Locations/WindowBay"]
+transform = Transform3D(0.876936, 0.159649, -0.453315, 0.102663, 0.859219, 0.501202, 0.469513, -0.486061, 0.73709, 0, 0, -0.353745)
+
+[node name="Left" type="Node3D" parent="Locations/WindowBay"]
+transform = Transform3D(0.862487, -0.186629, 0.47041, 0, 0.929519, 0.368774, -0.506079, -0.318062, 0.801698, 0, 0, -0.111057)
+
+[node name="Above" type="Node3D" parent="Locations/WindowBay"]
+transform = Transform3D(1, 0, 0, 0, 0.949677, 0.31323, 0, -0.31323, 0.949677, 0, 0.3181, -0.696018)
+script = ExtResource("5_g22yx")
+
+[node name="Bedroom" type="Node3D" parent="Locations"]
+transform = Transform3D(-0.787796, 0.124852, -0.60315, 8.86038e-09, 0.97924, 0.202702, 0.615936, 0.159688, -0.771441, 0.479172, 0.0902566, 4.04942)
+script = ExtResource("5_g22yx")
+
+[node name="Door" type="Node3D" parent="Locations/Bedroom"]
+
+[node name="Bed" type="Node3D" parent="Locations/Bedroom"]
+transform = Transform3D(-0.600476, 0.162089, -0.783043, -0.162089, 0.93424, 0.317685, 0.783043, 0.317685, -0.534716, -0.597534, 0.0838842, -2.26207)
