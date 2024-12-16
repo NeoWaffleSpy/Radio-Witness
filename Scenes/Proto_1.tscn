@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ebj7kn2m7i3k"]
+[gd_scene load_steps=7 format=3 uid="uid://bi6twmtamr0np"]
 
 [ext_resource type="Script" path="res://Scripts/ButtonGenerator.gd" id="1_bdag4"]
 [ext_resource type="PackedScene" uid="uid://cxm6tlxdtjj5f" path="res://Models/Board/scene.gltf" id="1_ci65f"]
 [ext_resource type="Script" path="res://Scripts/locations-picker.gd" id="2_cc5x4"]
 [ext_resource type="PackedScene" uid="uid://dj0prbgekpgmn" path="res://Models/Appartment/scene.gltf" id="2_vv1id"]
 [ext_resource type="Script" path="res://Scripts/POV-Picker.gd" id="5_g22yx"]
+[ext_resource type="PackedScene" uid="uid://b18jlv44cg0kh" path="res://assets/dialogues/radio.tscn" id="6_d5ygy"]
 
 [node name="Node" type="Node"]
 
@@ -52,18 +53,19 @@ spot_range = 2.5
 [node name="Locations" type="Node3D" parent="." node_paths=PackedStringArray("CameraPOV", "ButtonGenerator")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.3083, 1.14619, 39.6063)
 script = ExtResource("2_cc5x4")
-CameraPOV = NodePath("Table/Radio/Camera3D")
+CameraPOV = NodePath("Table/Camera3D")
 ButtonGenerator = NodePath("../UI")
 
-[node name="Table" type="Node3D" parent="Locations"]
+[node name="Table" type="Node3D" parent="Locations" node_paths=PackedStringArray("radio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70452, -0.139881, -2.82146)
 script = ExtResource("5_g22yx")
+radio = NodePath("Radio")
 
-[node name="Radio" type="Node3D" parent="Locations/Table"]
-transform = Transform3D(-4.2804e-08, 0.202702, -0.97924, 8.86038e-09, 0.97924, 0.202702, 1, 0, -4.37114e-08, 0, 0, 0)
+[node name="Radio" parent="Locations/Table" instance=ExtResource("6_d5ygy")]
+transform = Transform3D(-4.37114e-08, 0.34202, -0.939693, 0, 0.939693, 0.34202, 1, 1.49502e-08, -4.10753e-08, 0.0687294, 0, 0.065197)
 
-[node name="Camera3D" type="Camera3D" parent="Locations/Table/Radio"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="Camera3D" type="Camera3D" parent="Locations/Table"]
+transform = Transform3D(-4.2804e-08, 0.202702, -0.97924, 8.86038e-09, 0.97924, 0.202702, 1, 1.59872e-14, -4.37114e-08, 0, 0, 0)
 fov = 50.0
 
 [node name="Window" type="Node3D" parent="Locations/Table"]

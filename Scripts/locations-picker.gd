@@ -13,9 +13,9 @@ func _ready() -> void:
 		if child is Node3D:
 			child.init(CameraPOV)
 			LocationList.append(child)
-	print(LocationList)
 	ButtonGenerator.addMainChild(LocationList)
 	ButtonGenerator.addChild(LocationList[0].SubLocationList)
+	print(LocationList)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var DefaultLocation: Node3D
-
+@export var radio: Node3D
 var SubLocationList: Array[Node3D] = []
 var CameraPOV: Camera3D
 # Called when the node enters the scene tree for the first time.
@@ -10,11 +10,19 @@ func _ready() -> void:
 
 func init(cam: Camera3D) -> void:
 	CameraPOV = cam
+	if not DefaultLocation:
+		DefaultLocation = get_children()[0]
 	for child in get_children():
 		if child is Node3D:
 			SubLocationList.append(child)
-			if not DefaultLocation:
-				DefaultLocation = child
+			if child.name == "Radio":
+				self.radio = child
+
+func toggleRadio():
+
+	if self.radio != null && self.radio.is_visible():
+		print("show")
+		self.radio.hideUI()
 	
 func MoveToDefault() -> void: MoveTo(DefaultLocation)
 

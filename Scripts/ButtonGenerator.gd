@@ -2,6 +2,8 @@ extends Control
 
 @export var LocationPanel: VBoxContainer
 @export var SubLocationPanel: VBoxContainer
+
+var currentNode: Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -16,8 +18,13 @@ func clear(panel: VBoxContainer) -> void:
 		child.queue_free()
 
 func SwapPOV(node: Node3D):
+	print(currentNode)
+	if currentNode != null:
+		currentNode.toggleRadio()
+	currentNode = node
 	clearSubLocation()
 	addChild(node.SubLocationList)
+	
 	node.MoveToDefault()
 
 func clear_all_hooks(button: Button) -> void:
