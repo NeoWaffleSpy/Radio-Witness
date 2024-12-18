@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://Scripts/ButtonGenerator.gd" id="1_bdag4"]
 [ext_resource type="PackedScene" uid="uid://cxm6tlxdtjj5f" path="res://Models/Board/scene.gltf" id="1_ci65f"]
-[ext_resource type="Script" path="res://Scripts/locations-picker.gd" id="2_cc5x4"]
+[ext_resource type="Script" path="res://Scripts/LocationsPicker.gd" id="2_cc5x4"]
 [ext_resource type="PackedScene" uid="uid://dj0prbgekpgmn" path="res://Models/Appartment/scene.gltf" id="2_vv1id"]
 [ext_resource type="Script" path="res://Scripts/POV-Picker.gd" id="5_g22yx"]
 
-[node name="Node" type="Node"]
+[node name="BaseNode" type="Node"]
 
 [node name="UI" type="Control" parent="." node_paths=PackedStringArray("LocationPanel", "SubLocationPanel")]
 layout_mode = 3
@@ -63,7 +63,6 @@ script = ExtResource("5_g22yx")
 transform = Transform3D(-4.2804e-08, 0.202702, -0.97924, 8.86038e-09, 0.97924, 0.202702, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Locations/Table/Radio"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 fov = 50.0
 
 [node name="Window" type="Node3D" parent="Locations/Table"]

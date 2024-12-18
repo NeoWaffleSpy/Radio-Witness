@@ -14,3 +14,7 @@ config/name="Radio Witness"
 run/main_scene="res://Models/Appartment/scene.gltf"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+EventManager="*res://Scripts/EventManager.gd"
