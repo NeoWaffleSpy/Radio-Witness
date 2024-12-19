@@ -4,10 +4,10 @@ extends Node
 @export var ButtonGenerator: Control
 
 var LocationList: Array[Node3D] = []
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	if not CameraPOV:
-		print("No Camera found")
+		print("No Camera found: " + CameraPOV.name)
 		return
 	for child in get_children():
 		if child is Node3D:
@@ -17,6 +17,6 @@ func _ready() -> void:
 	ButtonGenerator.addMainChild(LocationList)
 	ButtonGenerator.addChild(LocationList[0].SubLocationList)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _notification(type):
+	if type == NOTIFICATION_PREDELETE:
+		EventManager.Position.delete_all_event(self)

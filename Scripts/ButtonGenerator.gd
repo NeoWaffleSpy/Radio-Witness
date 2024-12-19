@@ -34,7 +34,8 @@ func addMainChild(nodeList: Array[Node3D]) -> void:
 		var button = Button.new()
 		buttonList.append(button)
 		button.text = node.name
-		button.pressed.connect(SwapPOV.bind(node))
+		EventManager.Location.create_event(node.name, self).bind(self, SwapPOV)
+		button.pressed.connect(EventManager.Location.get_event(node.name).invoke.bind(node))
 		LocationPanel.add_child(button)
 
 func addChild(nodeList: Array[Node3D]) -> void:
@@ -46,9 +47,13 @@ func addChild(nodeList: Array[Node3D]) -> void:
 		var button = Button.new()
 		buttonList.append(button)
 		button.text = node.name
-		button.pressed.connect(Callable(node.get_parent_node_3d(), "MoveTo").bind(node))
+		EventManager.Location.create_event(node.name, self).bind(self, Callable(node.get_parent_node_3d(), "MoveTo"))
+		button.pressed.connect(EventManager.Location.get_event(node.name).invoke.bind(node))
 		SubLocationPanel.add_child(button)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func test_event(node: Node3D):
+	print("Moved to node " + node.name)
+
+func _notification(type):
+	if type == NOTIFICATION_PREDELETE:
+		EventManager.Location.unbind_all(self)

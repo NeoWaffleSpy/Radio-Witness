@@ -42,7 +42,3 @@ func MoveTo(node: Node3D) -> void:
 	#CameraPOV.global_transform.origin = Vector3(0, 0, 0)
 	#CameraPOV.global_transform.basis = Basis()
 	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Radio Witness"
-run/main_scene="res://Models/Appartment/scene.gltf"
+run/main_scene="res://Scenes/Proto_1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
