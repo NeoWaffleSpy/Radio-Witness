@@ -19,4 +19,4 @@ func _ready() -> void:
 
 func _notification(type):
 	if type == NOTIFICATION_PREDELETE:
-		EventManager.Position.delete_all_event(self)
+		EventManager.Location.delete_all_event(self)

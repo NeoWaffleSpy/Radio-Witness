@@ -15,9 +15,7 @@ func get_event(event_name: String) -> _Event:
 	return events[event_name].event
 
 func create_event(event_name: String, listener: Object) -> _Event:
-	if events.has(event_name):
-		printerr("Creating an already existing event: " + event_name)
-	else:
+	if not events.has(event_name):
 		events[event_name] = {"event": _Event.new(event_name), "listener": listener}
 	return events[event_name].event
 

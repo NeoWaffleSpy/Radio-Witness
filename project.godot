@@ -18,3 +18,4 @@ config/icon="res://icon.svg"
 [autoload]
 
 EventManager="*res://Scripts/EventManager.gd"
+GlobalVariables="*res://global_variables.gd"

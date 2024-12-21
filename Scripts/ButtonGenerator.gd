@@ -12,7 +12,6 @@ func clear(panel: VBoxContainer) -> void:
 	for child in panel.get_children():
 		if child is Button:
 			clear_all_hooks(child)
-		remove_child(child)
 		child.queue_free()
 
 func SwapPOV(node: Node3D):
@@ -23,6 +22,7 @@ func SwapPOV(node: Node3D):
 func clear_all_hooks(button: Button) -> void:
 	var signal_list = button.get_signal_connection_list("pressed")
 	for connection in signal_list:
+		
 		button.disconnect(connection.signal.get_name(), connection.callable)
 
 func addMainChild(nodeList: Array[Node3D]) -> void:
