@@ -2,9 +2,6 @@ extends Control
 
 @export var LocationPanel: VBoxContainer
 @export var SubLocationPanel: VBoxContainer
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 func clearLocation(): clear(LocationPanel)
 func clearSubLocation(): clear(SubLocationPanel)

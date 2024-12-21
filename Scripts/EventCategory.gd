@@ -2,43 +2,41 @@ extends Node
 
 class_name EventCategory
 
-var events = {}
-#var local_event = _Event.new(self.name)
-
-func _ready():
-	printerr("class initialized")
+var eventList = {}
 
 func get_event(event_name: String) -> _Event:
-	if not events.has(event_name):
+	if not eventList.has(event_name):
 		printerr("Calling a non existant event: " + event_name)
 		return null
-	return events[event_name].event
+	return eventList[event_name].event
 
-func create_event(listener: Object, event_name: String) -> _Event:
-	if events.has(event_name):
+func create_event(listener: String, event_name: String) -> _Event:
+	if eventList.has(event_name):
 		GlobalMethods.fatal_error("Event Already exist in this category")
-	events[event_name] = {"event": _Event.new(event_name), "listener": listener}
-	return events[event_name].event
+	eventList[event_name] = {"event": _Event.new(event_name), "listener": listener}
+	return eventList[event_name].event
 
-func delete_event(event_name: String, listener: Object):
-	if events.has(event_name) && events[event_name].listener == listener:
-		#events[event_name] = {"event": null, "listener": null}
-		events[event_name] = null
+func delete_event(event_name: String, listener: String):
+	if eventList.has(event_name) && eventList[event_name].listener == listener:
+		eventList[event_name].event.delete_event()
+		eventList[event_name] = null
 
-func delete_all_event(listener: Object):
-	for event in events:
-		if event.listener == listener:
-			event.unbind_all(listener)
-			#event = {"event": null, "listener": null}
-			events = null
+func delete_all_event(listener: String):
+	for e in eventList:
+		if eventList[e].listener == listener:
+			eventList[e].event.delete_event()
+			e = null
 
-func unbind_all(listener: Object):
-	for event in events:
-		if event.listener == listener:
-			event.unbind_all(listener)
+func unbind_all(listener: String):
+	for e in eventList:
+		if eventList[e].listener == listener:
+			eventList[e].event.unbind_all(listener)
 
-#	func invoke(data = null):
-#		local_event.invoke(data)
+func _notification(type):
+	if type == NOTIFICATION_PREDELETE:
+		for e in eventList:
+			eventList[e].event.delete_event()
+			eventList = null
 
 class _Event:
 	var event_name = ""
@@ -47,16 +45,16 @@ class _Event:
 	func _init(name: String):
 		self.event_name = name
 
-	func bind(listener: Object, method: Callable):
+	func bind(listener: String, method: Callable):
 		observers.append({"listener": listener, "method": method})
 
-	func unbind(listener: Object, method: Callable):
+	func unbind(listener: String, method: Callable):
 		for i in range(observers.size()):
 			if observers[i].listener == listener and observers[i].method == method:
 				observers.remove_at(i)
 				return
 
-	func unbind_all(listener: Object):
+	func unbind_all(listener: String):
 		for i in range(observers.size()):
 			if observers[i].listener == listener:
 				observers.remove_at(i)
@@ -66,7 +64,6 @@ class _Event:
 		for handler in observers:
 			handler.method.call(data)
 
-	func _notification(type):
-		if type == NOTIFICATION_PREDELETE:
-			observers.clear()
-			print("Event has been cleared: " + event_name)
+	func delete_event():
+		observers.clear()
+		print("Event has been cleared: " + event_name)
