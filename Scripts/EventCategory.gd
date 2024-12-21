@@ -15,8 +15,9 @@ func get_event(event_name: String) -> _Event:
 	return events[event_name].event
 
 func create_event(event_name: String, listener: Object) -> _Event:
-	if not events.has(event_name):
-		events[event_name] = {"event": _Event.new(event_name), "listener": listener}
+	if events.has(event_name):
+		GlobalMethods.fatal_error("Event Already exist in this category")
+	events[event_name] = {"event": _Event.new(event_name), "listener": listener}
 	return events[event_name].event
 
 func delete_event(event_name: String, listener: Object):

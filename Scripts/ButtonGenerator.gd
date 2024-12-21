@@ -14,15 +14,17 @@ func clear(panel: VBoxContainer) -> void:
 			clear_all_hooks(child)
 		child.queue_free()
 
-func SwapPOV(node: Node3D):
+func SwapLocation(node: Node3D):
+	GlobalVariables.Location = node
 	clearSubLocation()
 	addChild(node.SubLocationList)
-	node.MoveToDefault()
+	
+func SwapSubLocation(node: Node3D):
+	GlobalVariables.SubLocation = node
 
 func clear_all_hooks(button: Button) -> void:
 	var signal_list = button.get_signal_connection_list("pressed")
 	for connection in signal_list:
-		
 		button.disconnect(connection.signal.get_name(), connection.callable)
 
 func addMainChild(nodeList: Array[Node3D]) -> void:
@@ -34,8 +36,7 @@ func addMainChild(nodeList: Array[Node3D]) -> void:
 		var button = Button.new()
 		buttonList.append(button)
 		button.text = node.name
-		EventManager.Location.create_event(node.name, self).bind(self, SwapPOV)
-		button.pressed.connect(EventManager.Location.get_event(node.name).invoke.bind(node))
+		button.pressed.connect(SwapLocation.bind(node))
 		LocationPanel.add_child(button)
 
 func addChild(nodeList: Array[Node3D]) -> void:
@@ -47,13 +48,5 @@ func addChild(nodeList: Array[Node3D]) -> void:
 		var button = Button.new()
 		buttonList.append(button)
 		button.text = node.name
-		EventManager.Location.create_event(node.name, self).bind(self, Callable(node.get_parent_node_3d(), "MoveTo"))
-		button.pressed.connect(EventManager.Location.get_event(node.name).invoke.bind(node))
+		button.pressed.connect(SwapSubLocation.bind(node))
 		SubLocationPanel.add_child(button)
-
-func test_event(node: Node3D):
-	print("Moved to node " + node.name)
-
-func _notification(type):
-	if type == NOTIFICATION_PREDELETE:
-		EventManager.Location.unbind_all(self)

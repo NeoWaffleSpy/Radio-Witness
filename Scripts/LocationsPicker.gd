@@ -16,7 +16,3 @@ func _ready() -> void:
 	print(LocationList)
 	ButtonGenerator.addMainChild(LocationList)
 	ButtonGenerator.addChild(LocationList[0].SubLocationList)
-
-func _notification(type):
-	if type == NOTIFICATION_PREDELETE:
-		EventManager.Location.delete_all_event(self)

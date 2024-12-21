@@ -3,6 +3,7 @@ extends Node3D
 @export var DefaultLocation: Node3D
 
 var SubLocationList: Array[Node3D] = []
+var EventList = []
 var CameraPOV: Camera3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +13,7 @@ func init(cam: Camera3D) -> void:
 	CameraPOV = cam
 	for child in get_children():
 		if child is Node3D:
+			EventList.append(EventManager.Location.create_event(child.name, self).bind(self, MoveTo))
 			SubLocationList.append(child)
 			if not DefaultLocation:
 				DefaultLocation = child
@@ -42,3 +44,10 @@ func MoveTo(node: Node3D) -> void:
 	#CameraPOV.global_transform.origin = Vector3(0, 0, 0)
 	#CameraPOV.global_transform.basis = Basis()
 	pass
+
+func _notification(type):
+	if type == NOTIFICATION_PREDELETE:
+		for event in EventList:
+			if event:
+				event.queue_free()
+		EventList.clear()
