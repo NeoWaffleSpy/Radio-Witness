@@ -13,7 +13,7 @@ func init(cam: Camera3D) -> void:
 	CameraPOV = cam
 	for child in get_children():
 		if child is Node3D:
-			EventList.append(EventManager.Location.create_event(child.name, self).bind(self, MoveTo))
+			EventList.append(EventManager.Location.create_event(self, child.name).bind(self, MoveTo))
 			SubLocationList.append(child)
 			if not DefaultLocation:
 				DefaultLocation = child
