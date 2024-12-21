@@ -12,5 +12,6 @@ func _ready() -> void:
 		if child is Node3D:
 			child.init(CameraPOV)
 			LocationList.append(child)
+	GlobalVariables.Location = LocationList[0]
 	ButtonGenerator.addMainChild(LocationList)
 	ButtonGenerator.addChild(LocationList[0].SubLocationList)

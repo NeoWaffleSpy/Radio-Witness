@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5iwebd3stw5u"]
+
+[ext_resource type="PackedScene" uid="uid://cxm6tlxdtjj5f" path="res://Models/Board/scene.gltf" id="1_cjlmg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a7yiq"]
+size = Vector3(1.91248, 1.23145, 0.001)
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_cjlmg")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/Cork_2" index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/Cork_2/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000366807, -0.00927734, -1.1716e-05)
+shape = SubResource("BoxShape3D_a7yiq")
