@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck7ipribscdlu"]
+
+[ext_resource type="Script" path="res://Scripts/CursorJoint.gd" id="1_g2gpe"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_whfch"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_t60r5"]
+
+[node name="StaticBody3D" type="StaticBody3D"]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
+script = ExtResource("1_g2gpe")
+
+[node name="Pin" type="PinJoint3D" parent="."]
+node_b = NodePath("..")
+
+[node name="Col" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_whfch")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_t60r5")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgu0xd15y5oma"]
+
+[ext_resource type="Script" path="res://Scripts/DragNote.gd" id="1_0e1qx"]
+[ext_resource type="PackedScene" uid="uid://x5y5nehg3sf6" path="res://Models/pin.tscn" id="1_bydgo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cg8s0"]
+size = Vector3(1, 1, 0.01)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k22ns"]
+size = Vector3(1, 1, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p53yr"]
+
+[node name="Sheet" type="StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_0e1qx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_cg8s0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_k22ns")
+surface_material_override/0 = SubResource("StandardMaterial3D_p53yr")
+
+[node name="Pin" parent="." instance=ExtResource("1_bydgo")]
+transform = Transform3D(1.91069e-16, 4.37114e-09, 0.1, 0.1, -4.37114e-09, -3.57342e-22, 4.37114e-09, 0.1, -4.37114e-09, 0, 0.368952, 0)

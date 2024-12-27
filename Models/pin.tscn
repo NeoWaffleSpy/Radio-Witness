@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgy8jn2jvyvnb"]
+[gd_scene load_steps=5 format=3 uid="uid://x5y5nehg3sf6"]
+
+[ext_resource type="Script" path="res://Scripts/Rope/StringGenerator.gd" id="1_8bto0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uurct"]
 
@@ -7,13 +9,14 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_um08n"]
 albedo_color = Color(0.74902, 0, 0, 1)
 
-[node name="Pin" type="Node3D"]
+[node name="Pin" type="StaticBody3D"]
+script = ExtResource("1_8bto0")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="Col" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_uurct")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="Pin" type="PinJoint3D" parent="Col"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_wccj3")
 surface_material_override/0 = SubResource("StandardMaterial3D_um08n")

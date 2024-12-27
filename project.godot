@@ -17,9 +17,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-EventManager="*res://Scripts/EventManager.gd"
-GlobalVariables="*res://global_variables.gd"
-GlobalMethods="*res://global_methods.gd"
+EventManager="*res://Scripts/Singleton/EventManager.gd"
+GlobalVariables="*res://Scripts/Singleton/GlobalVariables.gd"
+GlobalMethods="*res://Scripts/Singleton/GlobalMethods.gd"
+
+[editor]
+
+naming/script_name_casing=1
 
 [input_devices]
 

@@ -12,3 +12,5 @@ var SubLocation: Node3D:
 			return
 		SubLocation = node
 		EventManager.Location.get_event(node.name).invoke(node)
+
+var DebugPanel: Panel = null
